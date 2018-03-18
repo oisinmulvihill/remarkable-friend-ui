@@ -22,44 +22,38 @@ Linux as well.
 ## Environment
 
 I used Python 3 installed directly from https://python.org as it works better with
-py2app when distributing the application.
+py2app when distributing the application. I've installed virtualenvwrapper on
+my system to manage python environments for development.
+
+```bash
+
+# Make sure to use the download python and not the system one:
+mkvirtualenv --clear rmfriendui -p /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+
+```
 
 I use home brew installed make and nvm to install the javascript tools needed
 to build, test and release the UI code. I use node 8.2.1 and yarn to manage
 the dependancies.
 
 The Python dependancy side is managed using pip and setuptools. I use make to
-coordinate the overall build and development processes.
+coordinate the overall development processes.
+
+### Set Up
+
+Activate the node 8.2.1 environment and the Python virtualenv before doing the
+install.
 
 ```bash
 
-mkvirtualenv --clear rmfriendui -p /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
-
-```
-
-Then install the requirements and set up the rmfriend console script as follows:
-
-```bash
-
-# Activate the node 8.2.1 environment and the Python virtualenv before doing
-# the install e.g.:
 nvm use v8.2.1
 workon rmfriendui
 
-# set up all dependancies.
+# set up all dependancies into the node and python environments.
 make install
 
 ```
 
-## running tests
-
-Once the environment is activated and set up you can run all the tests as follows:
-
-```bash
-
-make test
-
-```
 
 ## Developing the Javascript side using a browser and its handy dev tools
 
