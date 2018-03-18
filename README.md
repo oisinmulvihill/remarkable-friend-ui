@@ -32,7 +32,7 @@ coordinate the overall build and development processes.
 
 ```bash
 
-mkvirtualenv --clear webview -p /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
+mkvirtualenv --clear rmfriendui -p /Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 
 ```
 
