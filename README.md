@@ -1,7 +1,8 @@
 # reMarkable Friend UI
 
-This is the front-end, which uses the remarkable friend backend library, to
-allow the manipulation reMarkable notebooks on a desktop machine.
+This provides the interface to allow the manipulation reMarkable notebooks on a desktop machine.
+
+This uses the companion project to provide the manipulation functionality:
 
  - https://github.com/oisinmulvihill/remarkable-friend
 
