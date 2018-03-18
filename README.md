@@ -21,7 +21,7 @@ Linux as well.
 
 ## Environment
 
-I used Python 3 installed directly from python.org as it works better with
+I used Python 3 installed directly from https://python.org as it works better with
 py2app when distributing the application.
 
 I use home brew installed make and nvm to install the javascript tools needed
