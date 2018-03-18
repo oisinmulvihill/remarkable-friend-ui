@@ -34,24 +34,6 @@ let SettingsForm = props => {
             <Field name="username" component="input" type="username" />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <label htmlFor="port">Port</label>
-          </Col>
-          <Col>
-            <Field name="port" component="input" type="port" />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <button type="submit">Connect</button>
-          </Col>
-          <Col>
-            <div className="connectResult">
-              { props.connectDeviceResult.message }
-            </div>
-          </Col>
-        </Row>
        </form>
     </Container>
   )
@@ -60,8 +42,8 @@ let SettingsForm = props => {
 SettingsForm = reduxForm({
   form: 'settings',
   initialValues: {
-    address: '10.11.99.1',
-    port: 22,
+    address: '10.0.0.12',
+    // address: '10.11.99.1',
     username: 'root',
     password: ''
   }

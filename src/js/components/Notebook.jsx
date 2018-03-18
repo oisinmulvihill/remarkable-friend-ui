@@ -18,7 +18,10 @@ class Notebook extends React.Component {
     return (
       <Row>
         <Col>
-          <div>{ this.props.data.name }</div>
+          <div className="last_modified">{ this.props.data.last_modified }</div>
+        </Col>
+        <Col>
+          <div className="name">{ this.props.data.name }</div>
         </Col>
       </Row>
     )

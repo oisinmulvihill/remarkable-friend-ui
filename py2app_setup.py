@@ -33,7 +33,7 @@ OPTIONS = {
         'CFBundleName': 'reMarkableFriend',
         'CFBundleDisplayName': 'reMarkableFriend',
         'CFBundleGetInfoString': "Notebook helper friend",
-        'CFBundleIdentifier': "com.sourceweaver.remarkable.friend",
+        'CFBundleIdentifier': "com.sourceweaver.remarkable.friend.ui",
         'CFBundleVersion': VERSION,
         'CFBundleShortVersionString': VERSION,
         'NSHumanReadableCopyright':

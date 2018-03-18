@@ -12,13 +12,7 @@ const initialState = {
 
 function apiReducer(state=initialState, action) {
   switch (action.type) {
-    case 'CONNECT_DEVICE_RESULT':
-      return {
-        ...state,
-        connectDeviceResult: action.payload,
-      }
-
-    case 'RECOVER_NOTEBOOKS_RESULT':
+    case 'NOTEBOOK_LISTING':
       return {
         ...state,
         notebooks: action.payload,

@@ -1,32 +1,16 @@
 //
-export function connectDevice(settings) {
-  console.log('connectDevice');
-  console.log(settings);
+export function listNotebooks(settings) {
+  console.log('listNotebooks');
   return {
-    type: 'CONNECT_DEVICE',
+    type: 'LIST_NOTEBOOKS',
     payload: settings
   }
 }
 
-export function connectDeviceResult(message) {
-  console.log('connectDeviceResult');
+export function notebookListing(notebooks) {
+  console.log('notebookListing');
   return {
-    type: 'CONNECT_DEVICE_RESULT',
-    payload: message
-  }
-}
-
-export function recoverNotebooks() {
-  console.log('recoverNotebooks');
-  return {
-    type: 'RECOVER_NOTEBOOKS'
-  }
-}
-
-export function recoverNotebooksResult(notebooks) {
-  console.log('recoverNotebooksResult');
-  return {
-    type: 'RECOVER_NOTEBOOKS_RESULT',
+    type: 'NOTEBOOK_LISTING',
     payload: notebooks
   }
 }

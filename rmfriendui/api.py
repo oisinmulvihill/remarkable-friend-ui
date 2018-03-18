@@ -1,29 +1,29 @@
 # -*- coding: utf-8 -*-
 """
 """
+import json
+from rmfriend.tools.sftp import SFTP
 
 
 class API(object):
     """
     """
-    def __init__(self):
-        super(API, self).__init__()
-        self._settings = {}
-
-    def connect_device(self, settings):
-        """Connect the the reMarkable device.
+    def list_notebooks(self, settings):
+        """Recover a list of notebook informatino from reMarkable.
         """
-        self._settings = settings
-        print("Recieve settings: {}".format(self._settings))
-        return {'message': 'Connected OK', 'status': 'ok'}
+        print("Using settings: {}".format(settings))
+        auth = dict(
+            hostname=settings['address'],
+            username=settings['username'],
+            password=settings['password'],
+        )
 
-    def recover_notebooks(self):
-        """Connect the the reMarkable device.
-        """
-        print("Using settings: {}".format(self._settings))
-        return {
-            'notebooks': [
-                {'name': 'Mock Notebook1'},
-                {'name': 'Mock Notebook2'},
-            ]
-        }
+        notebooks = []
+        with SFTP.connect(**auth) as sftp:
+            results = SFTP.notebooks_from_listing(sftp.listdir())
+            notebooks = SFTP.notebook_ls(sftp, results)
+
+        returned = json.dumps(notebooks)
+        print("returning: {}".format(returned))
+
+        return returned
