@@ -23,10 +23,6 @@ function* watchConnectDevice() {
 //
 export function* apiRecoverNotebooks(connect_result_message) {
   const connect_result = connect_result_message.payload
-
-  console.log('connect_result')
-  console.log(connect_result.payload)
-
   if (connect_result.status === 'ok') {
 	const result = yield call(apiClient.recoverNotebooks)
   	yield put(apiActions.recoverNotebooksResult(result.notebooks))

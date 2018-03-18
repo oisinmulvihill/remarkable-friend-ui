@@ -52,8 +52,10 @@ workon rmfriendui
 # set up all dependancies into the node and python environments.
 make install
 
-```
+# change into the remarkable-friend checkout and also do:
+make install
 
+```
 
 ## Developing the Javascript side using a browser and its handy dev tools
 

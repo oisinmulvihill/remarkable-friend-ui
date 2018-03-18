@@ -11,33 +11,28 @@ class Notebooks extends React.Component {
     super(props);
   }
 
+
+  render_notebook(item, index) {
+    return (
+      <Notebook data={ item } key={ item.name } />
+    )
+  }
+
   render(){
     let notebooks = (
       <Container>
         <Row>
-          <Col>No notebooks to see 😭</Col>
-        </Row>
-        <Row>
-          <Col>&nbsp;</Col>
-        </Row>
-        <Row>
-          <Col>Is reMarkable connected?</Col>
+          <Col>Nothing to see 😭 Is reMarkable connected?</Col>
         </Row>
       </Container>
     )
 
     if (this.props.notebooks.length) {
-      notebooks = [
-        (<Container>)
-      ]
-
-      for (var notebook of this.props.notebooks) {
-        console.log("notebook:")
-        console.log(notebook)
-        notebooks.push((<Notebook />))
-      }
-
-      notebooks.push((</Container>))
+      notebooks = (
+        <Container>
+          {this.props.notebooks.map(this.render_notebook)}
+        </Container>
+      )
     }
 
     return notebooks

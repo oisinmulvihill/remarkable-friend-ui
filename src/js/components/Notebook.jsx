@@ -1,7 +1,6 @@
 //
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 import { Row, Col } from 'react-grid-system'
 
 
@@ -12,13 +11,14 @@ class Notebook extends React.Component {
   }
 
   static propTypes = {
+    data: PropTypes.object.isRequired
   }
 
   render(){
     return (
       <Row>
         <Col>
-          <div>[Notebook 1]</div>
+          <div>{ this.props.data.name }</div>
         </Col>
       </Row>
     )

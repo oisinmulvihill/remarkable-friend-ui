@@ -15,9 +15,7 @@ class API(object):
         """
         self._settings = settings
         print("Recieve settings: {}".format(self._settings))
-        return {
-            'message': 'Connected OK'
-        }
+        return {'message': 'Connected OK', 'status': 'ok'}
 
     def recover_notebooks(self):
         """Connect the the reMarkable device.
@@ -25,7 +23,7 @@ class API(object):
         print("Using settings: {}".format(self._settings))
         return {
             'notebooks': [
-                {"name": "Mock Notebook1"},
-                {"name": "Mock Notebook2"},
+                {'name': 'Mock Notebook1'},
+                {'name': 'Mock Notebook2'},
             ]
         }

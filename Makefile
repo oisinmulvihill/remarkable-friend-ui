@@ -1,3 +1,4 @@
+VERSION=(shell cat VERSION)
 YARN_VERSION=0.27.5
 NODE_VERSION=v8.2.1
 NODE_BIN=./node_modules/.bin

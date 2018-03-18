@@ -6,15 +6,17 @@ Usage:
     python setup.py py2app
 
 """
+import os
 from setuptools import setup, find_packages
 
+VERSION = os.environ.get('VERSION', '0.0.1')
 
 ENTRY_POINT = ['scripts/webviewer.py']
 
 DATA_FILES = []
 
 PKG_DATA = {
-    'viewer': [
+    'rmfriendui': [
         'static/index.html',
         'static/app.bundle.js',
         'static/main.css',
@@ -26,17 +28,16 @@ OPTIONS = {
     'strip': True,
     # 'iconfile': 'icon.icns',
     'includes': ['WebKit', 'Foundation', 'webview'],
-    #'packages': ['flask', 'werkzeug', 'config', 'jinja2'],
-    'packages': ['viewer'],
+    'packages': ['rmfriend', 'rmfriendui'],
     'plist': {
         'CFBundleName': 'reMarkableFriend',
         'CFBundleDisplayName': 'reMarkableFriend',
         'CFBundleGetInfoString': "Notebook helper friend",
         'CFBundleIdentifier': "com.sourceweaver.remarkable.friend",
-        'CFBundleVersion': "1.0.0",
-        'CFBundleShortVersionString': "1.0.0",
+        'CFBundleVersion': VERSION,
+        'CFBundleShortVersionString': VERSION,
         'NSHumanReadableCopyright':
-            u"Copyright © 2018, Oisin Mulvihill, All Rights Reserved"
+            u"Copyright © 2018, Oisin Mulvihill."
     }}
 
 setup(

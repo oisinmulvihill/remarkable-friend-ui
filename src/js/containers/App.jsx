@@ -21,10 +21,10 @@ class App extends React.Component {
     return (
       <Container>
         <Row>
-          <Col>
+          <Col md={ 3 }>
             <Settings />
           </Col>
-          <Col>
+          <Col md={ 9 }>
             <Notebooks />
           </Col>
         </Row>
