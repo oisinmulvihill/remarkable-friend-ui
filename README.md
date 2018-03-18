@@ -21,7 +21,7 @@ Linux as well.
 
 ## Environment
 
-I used Python 3 installed directly from https://python.org as it works better with
+I use Python 3 installed directly from https://python.org as it works better with
 py2app when distributing the application. I've installed virtualenvwrapper on
 my system to manage python environments for development.
 
