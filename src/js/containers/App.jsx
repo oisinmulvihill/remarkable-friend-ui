@@ -7,7 +7,6 @@ import * as apiActions from '../actions/APIActions'
 import Settings from './Settings'
 import Notebooks from './Notebooks'
 
-
 import app_style from '../../sass/app.scss'
 
 
@@ -19,12 +18,12 @@ class App extends React.Component {
 
   render(){
     return (
-      <Container>
+      <Container fluid={ true } className="interface">
         <Row>
-          <Col md={ 3 }>
+          <Col md={ 4 }>
             <Settings />
           </Col>
-          <Col md={ 9 }>
+          <Col md={ 8 }>
             <Notebooks />
           </Col>
         </Row>

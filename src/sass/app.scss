@@ -4,14 +4,12 @@ html, body {
   padding: 0;
 }
 
+.interface {
+  margin: 0;
+  padding: 0;
+  width: 100%;
 
-html {
-}
-
-body {
-  border: 1px solid green;
-}
-
-.root {
-  border: 1px solid red;
+  input {
+  	width: 100%;
+  }
 }

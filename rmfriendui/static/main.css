@@ -2,8 +2,9 @@ html, body {
   margin: 0;
   padding: 0; }
 
-body {
-  border: 1px solid green; }
-
-.root {
-  border: 1px solid red; }
+.interface {
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  .interface input {
+    width: 100%; }
