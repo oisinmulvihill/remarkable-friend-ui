@@ -1,9 +1,8 @@
 //
-export function listNotebooks(settings) {
+export function listNotebooks() {
   console.log('listNotebooks');
   return {
-    type: 'LIST_NOTEBOOKS',
-    payload: settings
+    type: 'LIST_NOTEBOOKS'
   }
 }
 

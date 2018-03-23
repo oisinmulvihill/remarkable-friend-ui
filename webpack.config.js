@@ -56,6 +56,13 @@ module.exports = {
     }),
     extractSass
   ],
+  externals: {
+    fs: '{}',
+    tls: '{}',
+    net: '{}',
+    dns: '{}',
+    readline: '{}'
+  },
   resolve: {
     extensions: ['.js', '.jsx'],
   },

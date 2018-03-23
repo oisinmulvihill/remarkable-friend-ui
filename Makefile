@@ -41,7 +41,8 @@ run: build
 
 web_run: NODE_ENV=development
 web_run:
-	$(NODE_BIN)/webpack-dev-server --config webpack.config.js
+	# $(NODE_BIN)/webpack-dev-server --config webpack.config.js
+	$(NODE_BIN)/webpack-dev-server
 
 
 watch:

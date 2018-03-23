@@ -14,7 +14,6 @@ class Notebooks extends React.Component {
   }
 
   static propTypes = {
-    settings: PropTypes.object.isRequired,
     notebooks: PropTypes.array.isRequired,
     listNotebooks: PropTypes.func.isRequired
   }
@@ -26,7 +25,7 @@ class Notebooks extends React.Component {
   }
 
   recoverNotebooks = () => {
-    this.props.listNotebooks(this.props.settings.values)
+    this.props.listNotebooks()
   }
 
   render(){
@@ -54,7 +53,6 @@ class Notebooks extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  settings: state.form.settings,
   notebooks: state.apiReducer.notebooks
 });
 

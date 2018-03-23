@@ -1,3 +1,4 @@
+bottle
 pyobjc==4.1
 jinja2==2.10
 py2app

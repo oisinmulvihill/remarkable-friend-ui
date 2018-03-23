@@ -20,10 +20,7 @@ class App extends React.Component {
     return (
       <Container fluid={ true } className="interface">
         <Row>
-          <Col md={ 4 }>
-            <Settings />
-          </Col>
-          <Col md={ 8 }>
+          <Col md={ 12 }>
             <Notebooks />
           </Col>
         </Row>
