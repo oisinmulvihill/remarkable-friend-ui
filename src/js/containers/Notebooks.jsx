@@ -29,12 +29,19 @@ class Notebooks extends React.Component {
   }
 
   render(){
-    let notebooks = (
-      <Container>
+    const header = (
+      <div>
         <Row>
-          <Col><button onClick={this.recoverNotebooks}>Connect</button></Col>
+          <Col>
+            <span className="h1">Notebooks</span>
+            <button className="refresh-btn" onClick={this.recoverNotebooks}>Refresh</button>
+          </Col>
         </Row>
-      </Container>
+      </div>
+    )
+
+    let notebooks = (
+      <Container>{ header }</Container>
     )
 
     if (this.props.notebooks.length) {
@@ -48,9 +55,10 @@ class Notebooks extends React.Component {
       let notebook = null
       for (let index = 0; index < total_notebooks; index++) {
         notebook = this.props.notebooks[index]
-        console.log(notebook)
 
-        // cols.push((<Col>{index}</Col>))
+        console.log('notebook:');
+        console.log(notebook);
+
         cols.push((
           <Col>
             <Notebook data={ notebook } key={ notebook.name } />
@@ -70,9 +78,7 @@ class Notebooks extends React.Component {
 
       notebooks = (
         <Container>
-          <Row>
-            <Col><button onClick={this.recoverNotebooks}>Refresh</button></Col>
-          </Row>
+          {header}
           {rows}
         </Container>
       )
