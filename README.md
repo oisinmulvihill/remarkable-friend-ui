@@ -33,8 +33,18 @@ mkvirtualenv --clear rmfriendui -p /Library/Frameworks/Python.framework/Versions
 ```
 
 I use home brew installed make and nvm to install the javascript tools needed
-to build, test and release the UI code. I use node 8.2.1 and yarn to manage
+to build, test and release the UI code. I use node 8.2.1 and yarn@1.5.1 to manage
 the dependancies.
+
+```bash
+
+nvm install v8.2.1
+
+nvm use --delete-prefix v8.2.1
+
+npm install -g yarn@1.5.1
+
+```
 
 The Python dependancy side is managed using pip and setuptools. I use make to
 coordinate the overall development processes.

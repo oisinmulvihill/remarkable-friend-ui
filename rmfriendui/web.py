@@ -1,47 +1,42 @@
 # -*- coding: utf-8 -*-
 """
-
 """
 import json
 
 import bottle
 from bottle import response
 
+from rmfriend import userconfig
 from rmfriend.tools.sync import Sync
 
 
-class EnableCors(object):
-    name = 'enable_cors'
-    api = 2
-
-    def apply(self, fn, context):
-        def _enable_cors(*args, **kwargs):
-            # set CORS headers
-            response.headers['Access-Control-Allow-Origin'] = '*'
-            response.headers['Access-Control-Allow-Methods'] = (
-                'GET, POST, PUT, OPTIONS'
-            )
-            response.headers['Access-Control-Allow-Headers'] = (
-                'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-            )
-            if bottle.request.method != 'OPTIONS':
-                # actual request; reply with the actual response
-                return fn(*args, **kwargs)
-
-        return _enable_cors
-
-
 app = bottle.app()
-app.install(EnableCors())
 
 
-@app.route('/image/', method=['OPTIONS', 'GET'])
-def image():
+@app.hook('after_request')
+def enable_cors():
+    """
+    """
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Methods'] = (
+        'PUT, GET, POST, DELETE, OPTIONS')
+    response.headers['Access-Control-Allow-Headers'] = (
+        'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+    )
+
+
+@app.route(
+    "/static/<document_id>/thumbnails/<filepath:re:.*\.(jpg|png|gif|ico|svg)>",
+    method=['OPTIONS', 'GET']
+)
+def static(document_id, filepath):
     """Recover the current notebooks from cache.
     """
-    notebooks = Sync.notebook_previews()
-    returned = json.dumps(notebooks)
-    # print("returning: {}".format(returned))
+    config = userconfig.recover_or_create()
+    cache_dir = config['rmfriend']['cache_dir']
+    filename = "{}/{}.thumbnails/{}".format(cache_dir, document_id, filepath)
+    with open(filename, 'rb') as fd:
+        returned = fd.read()
     return returned
 
 
@@ -50,9 +45,7 @@ def notebook_list():
     """Recover the current notebooks from cache.
     """
     notebooks = Sync.notebook_previews()
-    returned = json.dumps(notebooks)
-    # print("returning: {}".format(returned))
-    return returned
+    return json.dumps(notebooks)
 
 
 @app.route('/')

@@ -1,5 +1,5 @@
 VERSION=(shell cat VERSION)
-YARN_VERSION=0.27.5
+YARN_VERSION=1.5.1
 NODE_VERSION=v8.2.1
 NODE_BIN=./node_modules/.bin
 
@@ -43,6 +43,9 @@ web_run: NODE_ENV=development
 web_run:
 	# $(NODE_BIN)/webpack-dev-server --config webpack.config.js
 	$(NODE_BIN)/webpack-dev-server
+
+api_run:
+	python rmfriendui/web.py
 
 
 watch:

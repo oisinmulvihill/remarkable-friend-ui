@@ -16,23 +16,24 @@ class Notebook extends React.Component {
   }
 
   render(){
+    const doc_id = this.props.data.id;
+    const base_url = 'http://localhost:8800/static';
+    const cover_image = this.props.data.images[0]
+    const url = `${base_url}/${doc_id}/thumbnails/${cover_image}`;
+
     return (
-      <Row>
-        <Col>
-          <div className="pages">{ this.props.data.pages.length }</div>
-        </Col>
-        <Col>
-          <div className="name">{ this.props.data.name }</div>
-        </Col>
-        <Col>
-          <ReactSVG
-            path={ this.props.data.pages[0] }
-            callback={svg => console.log(svg)}
-            className="class-name"
-            wrapperClassName="wrapper-class-name"
-          />
-        </Col>
-      </Row>
+      <div class="notebook">
+        <Row>
+          <Col>
+            <img class="image" src={ url } />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <span className="name">{ this.props.data.name }</span>
+          </Col>
+        </Row>
+      </div>
     )
   }
 }

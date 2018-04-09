@@ -38,12 +38,42 @@ class Notebooks extends React.Component {
     )
 
     if (this.props.notebooks.length) {
+      const number_of_cols = 3
+      const total_notebooks = this.props.notebooks.length
+      const number_of_rows = Math.floor(total_notebooks / number_of_cols)
+
+      let col = 0
+      let rows = []
+      let cols = []
+      let notebook = null
+      for (let index = 0; index < total_notebooks; index++) {
+        notebook = this.props.notebooks[index]
+        console.log(notebook)
+
+        // cols.push((<Col>{index}</Col>))
+        cols.push((
+          <Col>
+            <Notebook data={ notebook } key={ notebook.name } />
+          </Col>
+        ))
+
+        col++
+        if (col >= number_of_cols) {
+          // New row, reset columns
+          rows.push((
+            <Row>{cols}</Row>
+          ))
+          col = 0
+          cols = []
+        }
+      }
+
       notebooks = (
         <Container>
           <Row>
             <Col><button onClick={this.recoverNotebooks}>Refresh</button></Col>
           </Row>
-          {this.props.notebooks.map(this.render_notebook)}
+          {rows}
         </Container>
       )
     }
