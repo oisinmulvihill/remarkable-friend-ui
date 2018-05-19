@@ -8,7 +8,7 @@ let SettingsForm = props => {
   const { handleSubmit, connectDeviceResult } = props
 
   return (
-    <Container>
+    <Container fluid={ true }>
       <form onSubmit={handleSubmit}>
         <Row>
           <Col>

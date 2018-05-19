@@ -1,0 +1,39 @@
+// General
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.root {
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid red;
+
+  .menu {
+    margin: 0;
+    padding: 0;
+
+    ul {
+      margin-left: 0;
+      margin-left: 0;
+      padding-left: 0;
+      list-style: none;
+
+      li {
+
+      }
+
+    }
+
+    border: 1px solid green;
+  }
+
+  .screen {
+    margin: 0;
+    padding: 0;
+
+    border: 1px solid blue;
+  }
+
+}
