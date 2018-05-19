@@ -11,6 +11,7 @@ import * as apiActions from '../actions/APIActions';
 import NotebookScreen from './NotebookScreen';
 import ArchiveScreen from './ArchiveScreen';
 import SettingScreen from './SettingScreen';
+
 import app_style from '../../sass/app.scss';
 
 
@@ -18,9 +19,9 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Container fluid={ true } class="root">
+        <Container fluid={ true } className="root">
           <Row>
-            <Col md={ 1 } class="menu">
+            <Col md={ 1 } className="menu">
               <ul>
                 <li><Link to="/">Notebooks</Link></li>
                 <li><Link to="/archive">Archive</Link></li>

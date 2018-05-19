@@ -48,6 +48,13 @@ def notebook_list():
     return json.dumps(notebooks)
 
 
+@app.route('/configuration/', method=['OPTIONS', 'GET'])
+def recover_configuration():
+    """Recover current configuration file contents."""
+    config = userconfig.recover_or_create()
+    return json.dumps(config)
+
+
 @app.route('/')
 def index():
     return '<b>Hello</b>!'

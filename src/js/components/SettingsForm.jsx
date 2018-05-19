@@ -8,30 +8,38 @@ let SettingsForm = props => {
   const { handleSubmit, connectDeviceResult } = props
 
   return (
-    <Container fluid={ true }>
+    <Container fluid={ true } className='settings'>
       <form onSubmit={handleSubmit}>
-        <Row>
-          <Col>
+        <Row className='field_row'>
+          <Col md={ 2 }>
             <label htmlFor="address">Address</label>
           </Col>
-          <Col>
+          <Col md={ 10 } >
             <Field name="address" component="input" type="text" />
           </Col>
         </Row>
-        <Row>
-          <Col>
-            <label htmlFor="password">Password</label>
+        <Row className='field_row'>
+          <Col md={ 2 }>
+            <label htmlFor="port">Port</label>
           </Col>
-          <Col>
-            <Field name="password" component="input" type="text" />
+          <Col md={ 10 }>
+            <Field name="port" component="input" type="text" />
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row className='field_row'>
+          <Col md={ 2 }>
             <label htmlFor="username">Username</label>
           </Col>
-          <Col>
+          <Col md={ 10 }>
             <Field name="username" component="input" type="username" />
+          </Col>
+        </Row>
+        <Row className='field_row'>
+          <Col md={ 2 }>
+            <label htmlFor="username">Archive Directory</label>
+          </Col>
+          <Col md={ 10 }>
+            <Field name="archive" component="input" type="archive" />
           </Col>
         </Row>
        </form>
@@ -40,13 +48,7 @@ let SettingsForm = props => {
 }
 
 SettingsForm = reduxForm({
-  form: 'settings',
-  initialValues: {
-    address: '10.0.0.12',
-    // address: '10.11.99.1',
-    username: 'root',
-    password: ''
-  }
+  form: 'settings'
 })(SettingsForm)
 
 export default SettingsForm

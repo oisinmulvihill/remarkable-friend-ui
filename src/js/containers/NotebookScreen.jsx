@@ -28,7 +28,7 @@ class NotebookScreen extends React.Component {
     this.props.listNotebooks()
   }
 
-  render(){
+  render() {
     const header = (
       <Row>
         <Col>

@@ -13,3 +13,10 @@ export function notebookListing(notebooks) {
     payload: notebooks
   }
 }
+
+export function getConfiguration() {
+  console.log('getConfiguration');
+  return {
+    type: 'GET_CONFIGURATION'
+  }
+}

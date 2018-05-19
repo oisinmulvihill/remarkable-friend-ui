@@ -7,7 +7,14 @@ import { reducer as formReducer } from 'redux-form'
 // Set initial state
 const initialState = {
 	connectDeviceResult: {message: '', status: ''},
-  notebooks: []
+  notebooks: [],
+  settings: {
+    address: '10.0.0.12',
+    // address: '10.11.99.1',
+    port: 22,
+    username: 'root',
+    archive: '~/.rmfriend/notebooks'
+  }
 }
 
 function apiReducer(state=initialState, action) {

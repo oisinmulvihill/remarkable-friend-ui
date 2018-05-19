@@ -8,7 +8,7 @@ html, body {
   margin: 0;
   padding: 0;
 
-  border: 1px solid red;
+  //border: 1px solid red;
 
   .menu {
     margin: 0;
@@ -21,19 +21,19 @@ html, body {
       list-style: none;
 
       li {
-
       }
 
     }
 
-    border: 1px solid green;
+    border-right: 1px solid gray;
+    //border: 1px solid green;
   }
 
   .screen {
     margin: 0;
     padding: 0;
 
-    border: 1px solid blue;
+    // border: 1px solid blue;
   }
 
 }
