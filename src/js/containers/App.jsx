@@ -26,11 +26,11 @@ class App extends React.Component {
     return (
       <Router>
         <Container fluid={ true } className="root">
-          <Websocket
+{/*          <Websocket
             url='ws://localhost:8800/websocket'
             onMessage={this.handleData}
           />
-          <Row>
+*/}          <Row>
             <Col md={ 1 } className="menu">
               <ul>
                 <li><Link to="/">Notebooks</Link></li>

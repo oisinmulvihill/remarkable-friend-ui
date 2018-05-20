@@ -1,41 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-
-https://stackoverflow.com/questions/10316374/bottle-websocket
-
 """
 import json
-from time import sleep
 
 import bottle
-from bottle import request
 from bottle import response
-from gevent import monkey
-from gevent.pywsgi import WSGIServer
-from geventwebsocket import WebSocketHandler, WebSocketError
 
 from rmfriend import userconfig
 from rmfriend.tools.sync import Sync
 
-monkey.patch_all()
-
 
 app = bottle.app()
-
-
-@app.route('/websocket')
-def handle_websocket():
-    wsock = request.environ.get('wsgi.websocket')
-    if not wsock:
-        bottle.abort(400, 'Expected WebSocket request.')
-    while True:
-        try:
-            message = wsock.receive()
-            wsock.send("Your message was: %r" % message)
-            sleep(3)
-            wsock.send("Your message was: %r" % message)
-        except WebSocketError:
-            break
 
 
 @app.hook('after_request')
@@ -84,13 +59,4 @@ def index():
     return '<b>Hello</b>!'
 
 
-host = "127.0.0.1"
-port = 8800
-
-server = WSGIServer(
-    (host, port),
-    app,
-    handler_class=WebSocketHandler
-)
-print("access @ http://{}:{}/websocket.html".format(host, port))
-server.serve_forever()
+app.run(host='localhost', port=8800)
