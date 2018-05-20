@@ -1,23 +1,4 @@
 //
 @import "layout";
-
-.refresh-btn {
-  margin-left: 8px;
-}
-
-.notebook {
-  border: 1px solid black;
-  margin: 1px;
-  padding: 1px;
-}
-
-.settings {
-
-	.field_row {
-		margin-top: 4px;
-	}
-
-	input {
-		width: 100%;
-	}
-}
+@import "notebooks";
+@import "settings";

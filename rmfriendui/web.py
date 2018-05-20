@@ -4,13 +4,34 @@
 import json
 
 import bottle
+from bottle import request
 from bottle import response
+from bottle.ext.websocket import GeventWebSocketServer
 
 from rmfriend import userconfig
 from rmfriend.tools.sync import Sync
 
 
 app = bottle.app()
+
+
+def websocket():
+    return request.environ.get('wsgi.websocket')
+
+
+@app.route('/websocket')
+def handle_websocket():
+    wsock = websocket()
+    print("wsock: ".format(wsock))
+    if not wsock:
+        print(400, 'Expected WebSocket request.')
+
+    else:
+        while True:
+            message = wsock.receive()
+            wsock.send("Your message was: %r" % message)
+
+    return ''
 
 
 @app.hook('after_request')
@@ -52,7 +73,7 @@ def notebook_list():
 def recover_configuration():
     """Recover current configuration file contents."""
     config = userconfig.recover_or_create()
-    return json.dumps(config)
+    return json.dumps(dict(config['rmfriend']))
 
 
 @app.route('/')
@@ -60,4 +81,4 @@ def index():
     return '<b>Hello</b>!'
 
 
-app.run(host='localhost', port=8800)
+app.run(host='localhost', port=8800, service=GeventWebSocketServer)

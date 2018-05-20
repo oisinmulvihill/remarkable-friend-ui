@@ -20,3 +20,11 @@ export function getConfiguration() {
     type: 'GET_CONFIGURATION'
   }
 }
+
+export function configuration(settings) {
+  console.log('configuration');
+  return {
+    type: 'CONFIGURATION',
+    payload: settings
+  }
+}

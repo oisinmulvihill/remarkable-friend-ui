@@ -11,29 +11,29 @@ class SettingScreen extends React.Component {
   static propTypes = {}
 
   componentDidMount() {
+    // Recover the actual configuration from the API service.
     this.props.getConfiguration()
   }
 
   onSave() {
-  	console.log("Save config to disk.");
+    console.log("Save config to disk.");
   }
 
   render() {
     return (
-    	<div>
-      		<SettingsForm />
-            <button onClick={this.onSave}>Save</button>
-       </div>
+      <SettingsForm
+          onSubmit={this.onSave}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-	settings: state.settings
+  settings: state.settings
 });
 
 const mapDispatchToProps = {
-	getConfiguration: apiActions.getConfiguration,
+    getConfiguration: apiActions.getConfiguration,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingScreen);

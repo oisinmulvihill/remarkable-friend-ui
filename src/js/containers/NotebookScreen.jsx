@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-grid-system'
 import * as apiActions from '../actions/APIActions'
 import Notebook from '../components/Notebook'
+import NotebookMenu from '../components/NotebookMenu'
 
 
 class NotebookScreen extends React.Component {
@@ -18,6 +19,11 @@ class NotebookScreen extends React.Component {
     listNotebooks: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    // When the page loads, kick off the local notebook recovery:
+    this.props.listNotebooks()
+  }
+
   render_notebook(item, index) {
     return (
       <Notebook data={ item } key={ item.name } />
@@ -28,19 +34,19 @@ class NotebookScreen extends React.Component {
     this.props.listNotebooks()
   }
 
+  synchronise = () => {
+    console.log('Todo Synchronise');
+  }
+
   render() {
     const header = (
-      <Row>
-        <Col>
-          <span className="h1">Notebooks</span>
-          <button className="refresh-btn" onClick={this.recoverNotebooks}>Refresh</button>
-        </Col>
-      </Row>
-    )
+      <NotebookMenu
+        onRefresh={this.recoverNotebooks}
+        onSynchronise={this.synchronise}
+      />
+    );
 
-    let notebooks = (
-      <Container fluid={ true }>{ header }</Container>
-    )
+    let notebooks = [];
 
     if (this.props.notebooks.length) {
       const number_of_cols = 3
@@ -53,10 +59,6 @@ class NotebookScreen extends React.Component {
       let notebook = null
       for (let index = 0; index < total_notebooks; index++) {
         notebook = this.props.notebooks[index]
-
-        console.log('notebook:');
-        console.log(notebook);
-
         cols.push((
           <Col>
             <Notebook data={ notebook } key={ notebook.name } />
@@ -75,10 +77,12 @@ class NotebookScreen extends React.Component {
       }
 
       notebooks = (
-        <Container fluid={ true }>
+        <div>
           {header}
-          {rows}
-        </Container>
+          <Container fluid={ true }>
+            {rows}
+          </Container>
+        </div>
       )
     }
 

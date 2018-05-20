@@ -23,7 +23,7 @@ class Notebook extends React.Component {
     const url = `${base_url}/${doc_id}/thumbnails/${cover_image}`;
 
     return (
-      <div class="notebook">
+      <div className="notebook">
         <Row>
           <Col>
             <img className="image" src={ url } />
