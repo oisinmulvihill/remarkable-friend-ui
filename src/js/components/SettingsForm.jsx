@@ -61,7 +61,7 @@ let SettingsForm = props => {
 SettingsForm = reduxForm({
   form: 'settings',
   enableReinitialize: true,
-  keepDirtyOnReinitialize:true
+  keepDirtyOnReinitialize: true
 })(SettingsForm);
 
 function connectSettingsToState(state) {

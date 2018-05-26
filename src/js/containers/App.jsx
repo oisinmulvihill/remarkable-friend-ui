@@ -8,36 +8,29 @@ import {
   Link
 } from 'react-router-dom';
 import Websocket from 'react-websocket';
-import * as apiActions from '../actions/APIActions';
 import NotebookScreen from './NotebookScreen';
 import SettingScreen from './SettingScreen';
-
 import app_style from '../../sass/app.scss';
 
 
 class App extends React.Component {
-
   handleData = (data) => {
-    console.log("Websocket Data Channel");
+    console.log('Websocket Data Channel');
     console.log(data);
   }
 
   render() {
     return (
       <Router>
-        <Container fluid={ true } className="root">
-{/*          <Websocket
-            url='ws://localhost:8800/websocket'
-            onMessage={this.handleData}
-          />
-*/}          <Row>
-            <Col md={ 1 } className="menu">
+        <Container fluid={true} className="root">
+          <Row>
+            <Col md={1} className="menu">
               <ul>
-                <li><Link to="/">Notebooks</Link></li>
-                <li><Link to="/settings">Settings</Link></li>
+                <li><Link to='/'>Notebooks</Link></li>
+                <li><Link to='/settings'>Settings</Link></li>
               </ul>
             </Col>
-            <Col md={ 11 } className="screen">
+            <Col md={11} className="screen">
               <Route exact path="/" component={NotebookScreen}/>
               <Route exact path="/settings" component={SettingScreen}/>
             </Col>
@@ -48,9 +41,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-
-});
+const mapStateToProps = (state) => ({});
 
 const mapDispatchToProps = {
 
