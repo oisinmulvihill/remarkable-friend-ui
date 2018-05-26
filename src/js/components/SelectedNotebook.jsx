@@ -11,32 +11,30 @@ class SelectedNotebook extends React.Component {
   }
 
   render() {
-    var returned = (<div />)
-
+    var returned = (<div/>)
     if (this.props.selected.hasOwnProperty('id')) {
       // If it has an ID it is probably an notebook object
       const notebook = this.props.selected;
-      console.log("SelectedNotebook: ")
-      console.log(notebook)
       const doc_id = notebook.id;
       const last_modified = notebook.last_modified;
       const images = notebook.images
       const base_url = 'http://localhost:8800/static';
       var url = ''
       var rows = []
+
       for (let index = 0; index < images.length; index++) {
         url = `${base_url}/${doc_id}/thumbnails/${images[index]}`;
         rows.push((
-          <Row className="page">
-            <Col>
-              <Container fluid={ true }>
+          <Row >
+            <Col md={ 12 }>
+              <Container fluid={ true } className="page">
                 <Row>
-                  <Col>
+                  <Col md={ 12 }>
                     <img className="image" src={ url } />
                   </Col>
                 </Row>
                 <Row>
-                  <Col>
+                  <Col md={ 12 }>
                     <span>Page { index + 1}</span>
                   </Col>
                 </Row>
@@ -69,9 +67,6 @@ class SelectedNotebook extends React.Component {
           </Row>
         </Container>
       )
-
-    } else {
-      console.log("SelectedNotebook: none selected yet.")
     }
 
     return returned
