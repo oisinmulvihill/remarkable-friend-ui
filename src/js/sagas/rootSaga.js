@@ -27,7 +27,6 @@ function* watchGetConfiguration() {
   yield takeEvery('GET_CONFIGURATION', apiGetConfiguration)
 }
 
-
 export default function* rootSaga() {
   yield all([
     watchListNotebooks(),

@@ -31,6 +31,13 @@ function apiReducer(state=initialState, action) {
         settings: action.payload
       };
 
+    case 'NOTEBOOK_SELECTED':
+      // Updated the state for the new selected notebook:
+      return {
+        ...state,
+        selectedNotebook: action.payload
+      };
+
     default:
       return state;
   }

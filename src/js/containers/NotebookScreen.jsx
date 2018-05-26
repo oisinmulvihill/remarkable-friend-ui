@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Container, Row, Col } from 'react-grid-system'
 import * as apiActions from '../actions/APIActions'
+import * as interfaceActions from '../actions/InterfaceActions'
 import Notebook from '../components/Notebook'
 import NotebookMenu from '../components/NotebookMenu'
 import SelectedNotebook from '../components/SelectedNotebook'
@@ -16,8 +17,10 @@ class NotebookScreen extends React.Component {
   }
 
   static propTypes = {
+    selectedNotebook: PropTypes.object.isRequired,
     notebooks: PropTypes.array.isRequired,
-    listNotebooks: PropTypes.func.isRequired
+    listNotebooks: PropTypes.func.isRequired,
+    setNotebookSelected: PropTypes.func.isRequired,
   }
 
   componentDidMount() {
@@ -42,13 +45,15 @@ class NotebookScreen extends React.Component {
   onNotebookSelect = (notebook) => {
     console.log('Notebook Selected!')
     console.log(notebook.name)
+    this.props.setNotebookSelected(notebook)
   }
 
   render() {
     let notebooks = [];
 
     if (this.props.notebooks.length) {
-      const number_of_cols = 3
+      const selectedNotebookId = this.props.selectedNotebook.id || ""
+      const number_of_cols = 2
       const total_notebooks = this.props.notebooks.length
       const number_of_rows = Math.floor(total_notebooks / number_of_cols)
       let col = 0
@@ -60,6 +65,7 @@ class NotebookScreen extends React.Component {
         cols.push((
           <Col>
             <Notebook
+              selected={ selectedNotebookId === notebook.id }
               data={ notebook }
               key={ notebook.name }
               onSelect={this.onNotebookSelect}
@@ -81,21 +87,25 @@ class NotebookScreen extends React.Component {
         <div>
           <Container fluid={ true }>
             <Row>
-              <Col md={ 12 }>
-                <NotebookMenu
-                  onRefresh={this.recoverNotebooks}
-                  onSynchronise={this.synchronise}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col md={ 9 }>
+              <Col md={ 7 }>
                 <Container fluid={ true }>
-                  {rows}
+                  <Row>
+                    <Col md={ 12 }>
+                      <NotebookMenu
+                        onRefresh={this.recoverNotebooks}
+                        onSynchronise={this.synchronise}
+                      />
+                    </Col>
+                    <Col md={ 12 }>
+                      <Container className="notebook-list-view" fluid={ true }>
+                        {rows}
+                      </Container>
+                    </Col>
+                  </Row>
                 </Container>
               </Col>
-              <Col md={ 3 }>
-                <SelectedNotebook />
+              <Col md={ 5 }>
+                <SelectedNotebook selected={ this.props.selectedNotebook } />
               </Col>
             </Row>
           </Container>
@@ -108,10 +118,12 @@ class NotebookScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  selectedNotebook: state.apiReducer.selectedNotebook,
   notebooks: state.apiReducer.notebooks
 });
 
 const mapDispatchToProps = {
+  setNotebookSelected: interfaceActions.notebookSelected,
   listNotebooks: apiActions.listNotebooks
 };
 

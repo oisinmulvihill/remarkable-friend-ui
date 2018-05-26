@@ -22,12 +22,14 @@ class Notebook extends React.Component {
     const base_url = 'http://localhost:8800/static';
     const cover_image = this.props.data.images[0]
     const url = `${base_url}/${doc_id}/thumbnails/${cover_image}`;
-
-
+    var classNames = "notebook";
+    if (this.props.selected === true) {
+      classNames += " selected"
+    }
 
     return (
       <div
-          className="notebook"
+          className={ classNames }
           onClick={() => { this.props.onSelect(this.props.data) }}
       >
         <Row>

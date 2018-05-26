@@ -1,18 +1,11 @@
 
-.refresh-btn {
-  margin-left: 8px;
-}
+$selected-colour: #66dd67;
 
-.notebook {
-  border: 1px solid black;
-  margin: 1px;
-  padding: 1px;
-}
+$outline-colour: #cfcfcf;
 
 .notebook-menu {
   padding: 0;
   margin-bottom: 4px;
-
   line-height: 40px;
 
   .title {
@@ -21,6 +14,44 @@
 
 }
 
-.notebook-selected {
-  border: 1px solid black;
+.notebook-list-view {
+  overflow-y: scroll;
+  min-height: 400px;
+  max-height: 800px;
+
+  .notebook {
+    border: 1px solid $outline-colour;
+    margin: 1px;
+    margin-bottom: 4px;
+    padding: 1px;
+  }
+
+  .selected {
+    border: 2px solid $selected-colour;
+  }
+}
+
+.notebook-selected-view {
+  min-height: 600px;
+  max-height: 800px;
+
+  .heading {
+    height: 10%;
+    line-height: 40px;
+  }
+
+  .pages {
+    height: 88%;
+    overflow-y: scroll;
+    padding-top: 4px;
+    border-top: 2px solid $selected-colour;
+
+    .page {
+      margin-bottom: 14px;
+
+      img {
+        border: 1px solid $outline-colour;
+      }
+    }
+  }
 }
