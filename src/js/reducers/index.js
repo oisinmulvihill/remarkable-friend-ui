@@ -12,7 +12,8 @@ const initialState = {
     port: 22,
     username: 'root',
     archive: '~/.rmfriend/notebooks'
-  }
+  },
+  selectedNotebook: {}
 };
 
 function apiReducer(state=initialState, action) {

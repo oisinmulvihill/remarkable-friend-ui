@@ -12,7 +12,8 @@ class Notebook extends React.Component {
   }
 
   static propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    onSelect: PropTypes.func.isRequired
   }
 
   render(){
@@ -22,8 +23,13 @@ class Notebook extends React.Component {
     const cover_image = this.props.data.images[0]
     const url = `${base_url}/${doc_id}/thumbnails/${cover_image}`;
 
+
+
     return (
-      <div className="notebook">
+      <div
+          className="notebook"
+          onClick={() => { this.props.onSelect(this.props.data) }}
+      >
         <Row>
           <Col>
             <img className="image" src={ url } />

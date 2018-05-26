@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-grid-system'
 import * as apiActions from '../actions/APIActions'
 import Notebook from '../components/Notebook'
 import NotebookMenu from '../components/NotebookMenu'
+import SelectedNotebook from '../components/SelectedNotebook'
 
 
 class NotebookScreen extends React.Component {
@@ -38,21 +39,18 @@ class NotebookScreen extends React.Component {
     console.log('Todo Synchronise');
   }
 
-  render() {
-    const header = (
-      <NotebookMenu
-        onRefresh={this.recoverNotebooks}
-        onSynchronise={this.synchronise}
-      />
-    );
+  onNotebookSelect = (notebook) => {
+    console.log('Notebook Selected!')
+    console.log(notebook.name)
+  }
 
+  render() {
     let notebooks = [];
 
     if (this.props.notebooks.length) {
       const number_of_cols = 3
       const total_notebooks = this.props.notebooks.length
       const number_of_rows = Math.floor(total_notebooks / number_of_cols)
-
       let col = 0
       let rows = []
       let cols = []
@@ -61,10 +59,13 @@ class NotebookScreen extends React.Component {
         notebook = this.props.notebooks[index]
         cols.push((
           <Col>
-            <Notebook data={ notebook } key={ notebook.name } />
+            <Notebook
+              data={ notebook }
+              key={ notebook.name }
+              onSelect={this.onNotebookSelect}
+            />
           </Col>
         ))
-
         col++
         if (col >= number_of_cols) {
           // New row, reset columns
@@ -78,9 +79,25 @@ class NotebookScreen extends React.Component {
 
       notebooks = (
         <div>
-          {header}
           <Container fluid={ true }>
-            {rows}
+            <Row>
+              <Col md={ 12 }>
+                <NotebookMenu
+                  onRefresh={this.recoverNotebooks}
+                  onSynchronise={this.synchronise}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col md={ 9 }>
+                <Container fluid={ true }>
+                  {rows}
+                </Container>
+              </Col>
+              <Col md={ 3 }>
+                <SelectedNotebook />
+              </Col>
+            </Row>
           </Container>
         </div>
       )

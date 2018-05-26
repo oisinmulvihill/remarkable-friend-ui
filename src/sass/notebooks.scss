@@ -9,7 +9,6 @@
   padding: 1px;
 }
 
-
 .notebook-menu {
   padding: 0;
   margin-bottom: 4px;
@@ -20,4 +19,8 @@
     font-weight: bold;
   }
 
+}
+
+.notebook-selected {
+  border: 1px solid black;
 }

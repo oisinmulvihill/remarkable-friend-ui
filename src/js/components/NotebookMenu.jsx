@@ -15,14 +15,24 @@ class NotebookMenu extends React.Component {
     return (
       <Container fluid={ true } className="notebook-menu">
         <Row>
-          <Col pull={ 2 } md={ 2 }>
+          <Col md={ 2 }>
             <span className="title">Local Notebooks</span>
           </Col>
-          <Col push={ 10 } md={ 1 }>
-            <button onClick={this.props.onRefresh}>Refresh</button>
+          <Col md={ 1 }>
+            <button
+              onClick={this.props.onRefresh}
+              title="Update the displayed local notebooks."
+            >
+              Refresh
+            </button>
           </Col>
           <Col md={ 1 }>
-            <button onClick={this.props.onSynchronise}>Synchronise</button>
+            <button
+              onClick={this.props.onSynchronise}
+              title="Download the latest notebooks and changes from reMarkable."
+            >
+              Downlaod
+            </button>
           </Col>
         </Row>
       </Container>
