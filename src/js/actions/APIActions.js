@@ -3,7 +3,7 @@ export function listNotebooks() {
   console.log('listNotebooks');
   return {
     type: 'LIST_NOTEBOOKS'
-  }
+  };
 }
 
 export function notebookListing(notebooks) {
@@ -11,14 +11,14 @@ export function notebookListing(notebooks) {
   return {
     type: 'NOTEBOOK_LISTING',
     payload: notebooks
-  }
+  };
 }
 
 export function getConfiguration() {
   console.log('getConfiguration');
   return {
     type: 'GET_CONFIGURATION'
-  }
+  };
 }
 
 export function configuration(settings) {
@@ -26,5 +26,12 @@ export function configuration(settings) {
   return {
     type: 'CONFIGURATION',
     payload: settings
-  }
+  };
+}
+
+export function startSynchronise() {
+  console.log('startSynchronise');
+  return {
+    type: 'START_SYNCHRONISE'
+  };
 }

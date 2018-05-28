@@ -54,6 +54,13 @@ def recover_configuration():
     return json.dumps(dict(config['rmfriend']))
 
 
+@app.route('/synchronise/start/', method=['OPTIONS', 'PUT'])
+def synchronise_start():
+    """Kick-off reMarkable synchronisation.
+    """
+    return json.dumps("OK")
+
+
 @app.route('/')
 def index():
     return '<b>Hello</b>!'

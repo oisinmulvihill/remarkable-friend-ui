@@ -16,6 +16,7 @@ class NotebookScreen extends React.Component {
     notebooks: PropTypes.array.isRequired,
     listNotebooks: PropTypes.func.isRequired,
     setNotebookSelected: PropTypes.func.isRequired,
+    startSynchronise: PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -27,8 +28,8 @@ class NotebookScreen extends React.Component {
     this.props.listNotebooks();
   }
 
-  synchronise = () => {
-    console.log('Todo Synchronise');
+  startSynchronise = () => {
+    this.props.startSynchronise();
   }
 
   render() {
@@ -41,7 +42,7 @@ class NotebookScreen extends React.Component {
                 <Col md={12}>
                   <NotebookMenu
                     onRefresh={this.recoverNotebooks}
-                    onSynchronise={this.synchronise}
+                    onSynchronise={this.startSynchronise}
                   />
                 </Col>
                 <Col md={12}>
@@ -70,7 +71,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   setNotebookSelected: interfaceActions.notebookSelected,
-  listNotebooks: apiActions.listNotebooks
+  listNotebooks: apiActions.listNotebooks,
+  startSynchronise: apiActions.startSynchronise
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotebookScreen);
