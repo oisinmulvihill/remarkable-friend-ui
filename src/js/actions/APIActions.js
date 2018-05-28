@@ -21,6 +21,14 @@ export function getConfiguration() {
   };
 }
 
+export function saveConfiguration(settings) {
+  console.log('saveConfiguration');
+  return {
+    type: 'SAVE_CONFIGURATION',
+    payload: settings
+  };
+}
+
 export function configuration(settings) {
   console.log('configuration');
   return {

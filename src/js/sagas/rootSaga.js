@@ -27,6 +27,18 @@ function* watchGetConfiguration() {
 }
 
 
+export function* apiSaveConfiguration(settings) {
+  const result = yield call(APIClient.PUT, '/configuration/', settings);
+  console.log('apiClient.apiSaveConfiguration');
+  console.log(result);
+  yield put(apiActions.configuration(result));
+}
+
+function* watchSaveConfiguration() {
+  yield takeEvery('SAVE_CONFIGURATION', apiSaveConfiguration);
+}
+
+
 export function* apiStartSynchronise() {
   const result = yield call(APIClient.put, '/synchronise/start/', {});
   console.log('apiClient.apiStartSynchronise');
@@ -42,6 +54,7 @@ export default function* rootSaga() {
   yield all([
     watchListNotebooks(),
     watchGetConfiguration(),
+    watchSaveConfiguration(),
     watchStartSynchronise()
   ]);
 }

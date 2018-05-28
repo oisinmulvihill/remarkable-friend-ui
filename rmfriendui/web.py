@@ -4,6 +4,7 @@
 import json
 
 import bottle
+from bottle import request
 from bottle import response
 
 from rmfriend import userconfig
@@ -50,6 +51,24 @@ def notebook_list():
 @app.route('/configuration/', method=['OPTIONS', 'GET'])
 def recover_configuration():
     """Recover current configuration file contents."""
+    config = userconfig.recover_or_create()
+    return json.dumps(dict(config['rmfriend']))
+
+
+@app.route('/configuration/', method=['OPTIONS', 'PUT'])
+def save_configuration():
+    """Save the configuration to disk."""
+    config = userconfig.recover_or_create()
+
+    settings = request.json()
+    print('Saving settings: {}'.format(settings))
+
+    config['rmfriend']['address'] = settings['address']
+    config['rmfriend']['post'] = settings['post']
+    config['rmfriend']['username'] = settings['username']
+    config['rmfriend']['cache_dir'] = settings['cache_dir']
+    config.write()
+
     config = userconfig.recover_or_create()
     return json.dumps(dict(config['rmfriend']))
 
