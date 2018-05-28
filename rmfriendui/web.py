@@ -11,10 +11,10 @@ from rmfriend import userconfig
 from rmfriend.tools.sync import Sync
 
 
-app = bottle.app()
+api = bottle.app()
 
 
-@app.hook('after_request')
+@api.hook('after_request')
 def enable_cors():
     """Allow the browser APP to talk to the API."""
     response.headers['Access-Control-Allow-Origin'] = '*'
@@ -25,7 +25,7 @@ def enable_cors():
     )
 
 
-@app.route(
+@api.route(
     "/static/<document_id>/thumbnails/<filepath:re:.*\.(jpg|png|gif|ico|svg)>",
     method=['OPTIONS', 'GET']
 )
@@ -40,7 +40,7 @@ def static(document_id, filepath):
     return returned
 
 
-@app.route('/notebooks/', method=['OPTIONS', 'GET'])
+@api.route('/notebooks/', method=['OPTIONS', 'GET'])
 def notebook_list():
     """Recover the current notebooks from cache.
     """
@@ -48,14 +48,14 @@ def notebook_list():
     return json.dumps(notebooks)
 
 
-@app.route('/configuration/', method=['OPTIONS', 'GET'])
+@api.route('/configuration/', method=['OPTIONS', 'GET'])
 def recover_configuration():
     """Recover current configuration file contents."""
     config = userconfig.recover_or_create()
     return json.dumps(dict(config['rmfriend']))
 
 
-@app.route('/configuration/', method=['OPTIONS', 'PUT'])
+@api.route('/configuration/', method=['OPTIONS', 'PUT'])
 def save_configuration():
     """Save the configuration to disk."""
     config = userconfig.recover_or_create()
@@ -73,16 +73,17 @@ def save_configuration():
     return json.dumps(dict(config['rmfriend']))
 
 
-@app.route('/synchronise/start/', method=['OPTIONS', 'PUT'])
+@api.route('/synchronise/start/', method=['OPTIONS', 'PUT'])
 def synchronise_start():
     """Kick-off reMarkable synchronisation.
     """
     return json.dumps("OK")
 
 
-@app.route('/')
+@api.route('/')
 def index():
     return '<b>Hello</b>!'
 
 
-app.run(host='localhost', port=8800)
+if __name__ == "__main__":
+    api.run(host='localhost', port=8800)

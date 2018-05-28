@@ -3,3 +3,4 @@ pyobjc==4.1
 jinja2==2.10
 py2app
 -e git://github.com/r0x0r/pywebview.git#egg=pywebview
+requests

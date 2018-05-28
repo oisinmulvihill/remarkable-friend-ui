@@ -2,6 +2,7 @@
 """
 """
 import os
+import time
 import codecs
 import inspect
 import platform
@@ -9,9 +10,10 @@ import threading
 import pkg_resources
 
 import webview
+import requests
 
 from rmfriendui import static
-from rmfriendui.api import API
+from rmfriendui.web import api
 
 
 def run_path():
@@ -48,9 +50,23 @@ def static_path_for(path, filename):
     return returned
 
 
-def create_app():
+def config():
+    """Configuration for the API process and Webview.
+    """
+    port = 8800
+
+    return {
+        "port": port,
+        "api_url": "http://localhost:{}".format(port)
+    }
+
+
+def create_app(run_config):
     """
     """
+    print("Runtime configuration: {}".format(run_config))
+    api_url = run_config["api_url"]
+
     if is_bundled():
         print("Running in Bundled mode.")
 
@@ -106,15 +122,42 @@ def create_app():
         format(main_css)
     )
 
-    print("Loading HTML:\n\n{}\n".format(page))
+    loading = """
+    <html><body><h3>Starting, one moment please...</h3></body></html>
+    """
+    resp = requests.get(api_url)
+    while resp.status_code != 200:
+        webview.load_html(loading)
+        resp = requests.get(api_url)
+        time.sleep(1)
 
+    print("Loading HTML:\n\n{}\n".format(page))
     webview.load_html(page)
+
+
+def create_api_app(run_config):
+    """Run the bottle API microservice."""
+    print("Runtime configuration: {}".format(run_config))
+    api.run(host='localhost', port=run_config["port"])
 
 
 def main():
     """
     """
-    t = threading.Thread(target=create_app)
-    t.start()
+    run_config = config()
 
-    webview.create_window('WEB UI', js_api=API(), debug=True)
+    # Start the API the JS code will talk to:
+    api_thread = threading.Thread(target=create_api_app, args=(run_config, ))
+    api_thread.start()
+
+    # Now run the webview which will wait for the API to start running.
+    webview_app = threading.Thread(target=create_app, args=(run_config, ))
+    webview_app.start()
+
+    webview.create_window(
+        'reMarkable Friend',
+        resizable=True,
+        background_color="#000",
+        min_size=(1024, 1024),
+        debug=True
+    )

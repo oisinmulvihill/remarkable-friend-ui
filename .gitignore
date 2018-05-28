@@ -20,3 +20,6 @@ logs/*
 viewer/static/app.bundle.js
 viewer/static/index.html
 viewer/static/main.css
+rmfriendui/static/app.bundle.js
+rmfriendui/static/index.html
+rmfriendui/static/main.css
