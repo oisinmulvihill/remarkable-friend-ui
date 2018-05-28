@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     return (
       <Router>
-        <Container fluid={true} className="root">
+        <Container fluid={true}>
           <Row>
             <Col md={1} className="menu">
               <ul>

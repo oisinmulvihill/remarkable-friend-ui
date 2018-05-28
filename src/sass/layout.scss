@@ -2,17 +2,12 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 
 .root {
-  margin: 0;
-  padding: 0;
-
-  //border: 1px solid red;
 
   .menu {
-    margin: 0;
-    padding: 0;
 
     ul {
       margin: 0;
@@ -26,14 +21,8 @@ html, body {
     }
 
     border-right: 1px solid gray;
-    //border: 1px solid green;
   }
 
   .screen {
-    margin: 0;
-    padding: 0;
-
-    // border: 1px solid blue;
   }
-
 }

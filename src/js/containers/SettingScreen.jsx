@@ -31,14 +31,14 @@ class SettingScreen extends React.Component {
       keepDirtyOnReinitialize: true
     })(RawSettingsForm);
 
-    function connectSettingsToState(state) {
-      return {
-        // pull initial values from account reducer
-        initialValues: state.apiReducer.settings
-      };
-    }
+    // function connectSettingsToState(state) {
+    //   return {
+    //     // pull initial values from account reducer
+    //     initialValues: state.apiReducer.settings
+    //   };
+    // }
 
-    SettingsForm = connect(connectSettingsToState)(SettingsForm);
+    // SettingsForm = connect(connectSettingsToState)(SettingsForm);
 
     return (
       <SettingsForm onSubmit={this.saveConfiguration} />
