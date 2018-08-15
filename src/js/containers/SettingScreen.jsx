@@ -27,18 +27,18 @@ class SettingScreen extends React.Component {
   render() {
     let SettingsForm = reduxForm({
       form: 'settings',
-      enableReinitialize: true,
+      enableReinitialize: false,
       keepDirtyOnReinitialize: true
     })(RawSettingsForm);
 
-    // function connectSettingsToState(state) {
-    //   return {
-    //     // pull initial values from account reducer
-    //     initialValues: state.apiReducer.settings
-    //   };
-    // }
+    function connectSettingsToState(state) {
+      return {
+        // pull initial values from account reducer
+        initialValues: state.apiReducer.settings
+      };
+    }
 
-    // SettingsForm = connect(connectSettingsToState)(SettingsForm);
+    SettingsForm = connect(connectSettingsToState)(SettingsForm);
 
     return (
       <SettingsForm onSubmit={this.saveConfiguration} />

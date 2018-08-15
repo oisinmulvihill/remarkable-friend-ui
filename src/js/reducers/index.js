@@ -14,42 +14,42 @@ const initialState = {
     archive: '~/.rmfriend/notebooks'
   },
   selectedNotebook: {}
-};
+}
 
-function apiReducer(state=initialState, action) {
+function apiReducer (state = initialState, action) {
   switch (action.type) {
     case 'NOTEBOOK_LISTING':
       return {
         ...state,
         notebooks: action.payload
-      };
+      }
 
     case 'CONFIGURATION':
       // new settings:
       return {
         ...state,
         settings: action.payload
-      };
+      }
 
     case 'NOTEBOOK_SELECTED':
       // Updated the state for the new selected notebook:
       return {
         ...state,
         selectedNotebook: action.payload
-      };
+      }
 
     default:
-      return state;
+      return state
   }
 }
 
 const appReducer = combineReducers({
   form: formReducer,
-  apiReducer,
-});
+  apiReducer
+})
 
 const rootReducer = (state, action) => {
-  return appReducer(state, action);
-};
+  return appReducer(state, action)
+}
 
-export default rootReducer;
+export default rootReducer

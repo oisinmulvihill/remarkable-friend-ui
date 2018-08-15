@@ -23,7 +23,7 @@ class SelectedNotebook extends React.Component {
       for (let index = 0; index < images.length; index++) {
         url = `${baseUrl}/${docId}/thumbnails/${images[index]}`;
         rows.push((
-          <Row >
+          <Row key={index}>
             <Col md={12}>
               <Container fluid={true} className="page">
                 <Row>
